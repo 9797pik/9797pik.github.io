@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofbooks - Toko Buku Online</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2b1055, #7597de, #2b1055);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .search-bar {
+            margin: 20px 0;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .book-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .book-item img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .book-item h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .book-item p {
+            font-size: 0.9em;
+            color: #ddd;
+            margin: 5px 0;
+        }
+
+        .book-item button {
+            padding: 10px 20px;
+            background: #7597de;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .book-item button:hover {
+            background: #5a76b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sofbooks</h1>
+        <p>Toko Buku Online dengan Koleksi Terbaik</p>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Cari buku...">
+    </div>
+
+    <div class="book-list" id="bookList">
+        <!-- Daftar buku -->
+        <div class="book-item" data-title="Malioboro At Midnight">
+            <img src="malio.jpg" alt="Romance Book Cover">
+            <h3>Malioboro At Midnight</h3>
+            <p>Rp99,000</p>
+            <button onclick="orderBook('Malioboro At Midnight')">Pesan</button>
+        </div>
+        <div class="book-item" data-title="The Eyes Of Darkness">
+            <img src="thril.jpg" alt="Thirller Book Cover">
+            <h3>The Eyes Of Darkness</h3>
+            <p>Rp89,000</p>
+            <button onclick="orderBook('The Eyes Of Darkness')">Pesan</button>
+        </div>
+        <div class="book-item" data-title="Tiga Sandera Terakhir">
+            <img src="ac.jpg" alt="Action Book Cover">
+            <h3>Tiga Sandera Terakhir</h3>
+            <p>Rp80,000</p>
+            <button onclick="orderBook('Tiga Sandera Terakhir')">Pesan</button>
+        </div>
+        <div class="book-item" data-title="Aku Tau Kapan Aku Mati">
+            <img src="horor.jpg" alt="Aku Tau Kapan Aku Mati">
+            <h3>Aku Tau Kapan Aku Mati</h3>
+            <p>Rp60,000</p>
+            <button onclick="orderBook('Aku Tau Kapan Aku Mati')">Pesan</button>
+        </div>
+        <!-- Tambahkan lebih banyak buku sesuai kebutuhan -->
+    </div>
+
+    <script>
+        // Fitur pencarian buku
+        const searchInput = document.getElementById('search');
+        const bookList = document.getElementById('bookList');
+        const books = document.querySelectorAll('.book-item');
+
+        searchInput.addEventListener('input', function () {
+            const searchText = searchInput.value.toLowerCase();
+            books.forEach(book => {
+                const title = book.getAttribute('data-title').toLowerCase();
+                if (title.includes(searchText)) {
+                    book.style.display = '';
+                } else {
+                    book.style.display = 'none';
+                }
+            });
+        });
+
+        // Fungsi pemesanan buku
+        function orderBook(bookTitle) {
+            const orderUrl = `https://api.whatsapp.com/send?phone=6283103802165&text=Halo%20Sofbooks,%20saya%20ingin%20memesan%20buku%20${encodeURIComponent(bookTitle)}.%20Terima%20kasih!`;
+            window.open(orderUrl, '_blank');
+        }
+    </script>
+<section id="about" style="margin: 40px auto; padding: 20px; max-width: 1200px;">
+    <div style="background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); color: #fff;">
+        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);">
+            Tentang Kami
+        </h2>
+        <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 20px;">
+            <strong>Sofbooks</strong> adalah platform toko buku online yang berdiri sejak tahun 2024. Kami hadir untuk menyediakan 
+            akses mudah ke berbagai macam buku dari berbagai genre, mulai dari fiksi, non-fiksi, buku pelajaran, hingga karya sastra 
+            klasik. Dengan semangat membaca sebagai jembatan menuju pengetahuan dan kebahagiaan, Sofbooks berkomitmen untuk menjadi 
+            pilihan utama para pecinta buku di seluruh Indonesia.
+        </p>
+        <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 20px;">
+            Kami percaya bahwa membaca bukan hanya kegiatan, melainkan sebuah gaya hidup yang dapat menginspirasi, mendidik, dan 
+            membuka wawasan baru. Oleh karena itu, kami terus berinovasi untuk memberikan pengalaman berbelanja buku yang mudah, 
+            cepat, dan terpercaya.
+        </p>
+        <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 1.8em; margin-bottom: 10px;">Kontak Kami</h3>
+            <p style="font-size: 1.2em; line-height: 1.8;">
+                Kami selalu terbuka untuk mendengar masukan, kritik, dan saran Anda. Jangan ragu untuk menghubungi kami melalui:
+            </p>
+            <ul style="font-size: 1.2em; line-height: 1.8; margin-left: 20px; list-style: none; padding: 0;">
+                <li>Email: <a href="mailto:contact@sofbooks.com" style="color: #7597de;">contact@sofbooks.com</a></li>
+                <li>Instagram: <a href="https://instagram.com/sofbooks" target="_blank" style="color: #7597de;">@sofbooks</a></li>
+                <li>Facebook: <a href="https://facebook.com/sofbooks" target="_blank" style="color: #7597de;">Sofbooks Official</a></li>
+                <li>Twitter: <a href="https://twitter.com/sofbooks" target="_blank" style="color: #7597de;">@sofbooks</a></li>
+            </ul>
+        </div>
+        <div style="text-align: center;">
+            <p style="font-size: 1em; color: #aaa; font-style: italic;">
+                “Membaca adalah jendela dunia, dan buku adalah pintu yang membukanya.” - Sofbooks
+            </p>
+        </div>
+    </div>
+</section>
+ <footer>
+        <p>&copy; 2024 Sofbooks</p>
+    </footer>
+
+</body>
+</html>
